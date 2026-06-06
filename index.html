@@ -459,8 +459,8 @@ function locCard(loc, dayIdx) {
   const gmapQ = loc.gmap||encodeURIComponent(loc.name);
   let lnk = `<button class="btn nav" onclick="openAS('${loc.name.replace(/'/g,"\\'")}',${loc.lat},${loc.lng},'${gmapQ}')">📍 导航</button>`;
   if(loc.xhs||loc.xhsKeyword) {
-    const xhsHref = xhsWebUrl(loc);
-    lnk += `<a href="${xhsHref}" class="btn xhs" target="_blank">📕 小红书</a>`;
+    const xhsPageUrl = 'xhs.html?keyword=' + encodeURIComponent(xhsKeyword(loc));
+    lnk += `<a href="${xhsPageUrl}" class="btn xhs" target="_blank">📕 小红书</a>`;
   }
   return `<div class="tl-item"><div class="tl-dot ${dot}"></div><div class="card" onclick="if(!event.target.closest('.btn,.links'))toggle('${uid}')"><div class="time">${loc.time!=='—'?loc.time:'备选'}</div><div class="name">${bdg} ${loc.name}</div><div class="desc">${loc.desc}</div>${loc.budget?'<div class="budget">'+loc.budget+'</div>':''}${payChips(loc.pay)}<div class="links">${lnk}</div>${loc.detail?'<div class="details" id="'+uid+'">'+loc.detail.replace(/\n/g,'<br>')+'</div>':''}</div></div>`;
 }
