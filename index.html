@@ -202,7 +202,7 @@ const DAYS = [
     id: 1, label: 'D1', date: '第一天 · 轻松到达 + 温泉躺平', title: '温泉养生日', color: '#ff9500',
     locations: [
       {
-        name: '武汉出发', lat: 30.593, lng: 114.305,
+        name: '武汉出发', destination: '武汉市', lat: 30.593, lng: 114.305,
         type: 'transport', time: '08:30',
         desc: '自驾走沪渝高速/福银高速，约3-3.5小时到达',
         budget: '高速费约150元',
@@ -219,7 +219,7 @@ const DAYS = [
         gmap: '庐山西海温泉假日酒店'
       },
       {
-        name: '酒店午餐', lat: 29.198, lng: 115.385,
+        name: '酒店午餐', destination: '庐山西海温泉假日酒店', lat: 29.198, lng: 115.385,
         type: 'food', time: '12:30',
         desc: '酒店餐厅或附近农家菜，品尝庐山西海特色鱼鲜',
         budget: '约200-300元/4人',
@@ -228,7 +228,7 @@ const DAYS = [
         gmap: '庐山西海温泉假日酒店餐厅'
       },
       {
-        name: '西海温泉泡汤', lat: 29.198, lng: 115.385,
+        name: '西海温泉泡汤', destination: '西海温泉', lat: 29.198, lng: 115.385,
         type: 'spot', time: '14:30',
         desc: '49个温泉池，含药汤、鱼疗、花泉等，孕妇泡低温池（<38℃）',
         budget: '住店免费/约168元/人',
@@ -237,14 +237,14 @@ const DAYS = [
         gmap: '庐山西海温泉度假村温泉区'
       },
       {
-        name: '湖边散步/下午茶', lat: 29.195, lng: 115.388,
+        name: '湖边散步/下午茶', destination: '柘林湖畔', lat: 29.195, lng: 115.388,
         type: 'spot', time: '17:00',
         desc: '柘林湖畔漫步，看夕阳洒在湖面上，超级治愈',
         detail: '湖边有步道，平坦好走\n傍晚光线最美\n适合拍照打卡\n孕妇慢慢走，不赶时间',
         gmap: '柘林湖'
       },
       {
-        name: '晚餐·农家乐', lat: 29.200, lng: 115.382,
+        name: '晚餐·农家乐', destination: '西海鱼庄', lat: 29.200, lng: 115.382,
         type: 'food', time: '18:30',
         desc: '附近农家乐吃地道西海鱼鲜，新鲜打捞',
         budget: '约200-300元/4人',
@@ -253,7 +253,7 @@ const DAYS = [
         gmap: '庐山西海农家乐'
       },
       {
-        name: '酒店休息/夜景', lat: 29.198, lng: 115.385,
+        name: '酒店休息/夜景', destination: '庐山西海温泉假日酒店', lat: 29.198, lng: 115.385,
         type: 'hotel', time: '20:00',
         desc: '回酒店休息，湖边夜景很美，早点休息养精蓄锐',
         gmap: '庐山西海温泉假日酒店'
@@ -264,7 +264,7 @@ const DAYS = [
     id: 2, label: 'D2', date: '第二天 · 游船观岛 + 悠闲返程', title: '湖光山色日', color: '#34c759',
     locations: [
       {
-        name: '睡到自然醒·早餐', lat: 29.198, lng: 115.385,
+        name: '睡到自然醒·早餐', destination: '庐山西海温泉假日酒店', lat: 29.198, lng: 115.385,
         type: 'food', time: '08:30',
         desc: '不设闹钟，自然醒后慢慢吃早餐',
         detail: '度假嘛，不赶时间\n孕妇需要充足睡眠\n酒店自助早餐或附近早点',
@@ -280,7 +280,7 @@ const DAYS = [
         gmap: '庐山西海司马旅游码头'
       },
       {
-        name: '游船观岛·西海风光', lat: 29.160, lng: 115.350,
+        name: '游船观岛·西海风光', destination: '庐山西海景区', lat: 29.160, lng: 115.350,
         type: 'spot', time: '10:30',
         desc: '坐船穿梭在千岛之间，湖水碧绿如翡翠，风景绝美',
         detail: '主要看点：\n🏝️ 各种小岛形态各异\n💧 湖水清澈碧绿\n⛰️ 远山如黛\n📸 船头拍照最佳\n⚠️ 孕妇建议坐船舱内，避免甲板风大',
@@ -288,7 +288,7 @@ const DAYS = [
         gmap: '庐山西海景区'
       },
       {
-        name: '岛上午餐', lat: 29.155, lng: 115.345,
+        name: '岛上午餐', destination: '庐山西海景区', lat: 29.155, lng: 115.345,
         type: 'food', time: '12:00',
         desc: '在景区岛上餐厅用餐，边吃边看湖景',
         budget: '约150-250元/4人',
@@ -296,7 +296,7 @@ const DAYS = [
         gmap: '庐山西海景区餐厅'
       },
       {
-        name: '返程·回武汉', lat: 30.593, lng: 114.305,
+        name: '返程·回武汉', destination: '武汉市', lat: 30.593, lng: 114.305,
         type: 'transport', time: '14:00',
         desc: '午餐后悠闲返程，避开晚高峰',
         budget: '高速费约150元',
