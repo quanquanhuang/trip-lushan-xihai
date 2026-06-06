@@ -514,8 +514,7 @@ asOverlay.addEventListener('click', e => { if (e.target === asOverlay) closeAS()
 
 const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 function amapAppUrl(name, lat, lng) {
-  const scheme = IS_IOS ? 'iosamap' : 'androidamap';
-  return `${scheme}://viewMap?sourceApplication=trip&poiname=${encodeURIComponent(name)}&lat=${lat}&lon=${lng}&dev=1`;
+  return `amapuri://navi?sourceApplication=trip&lon=${lng}&lat=${lat}&dev=1&style=2`;
 }
 function amapWebUrl(name, lat, lng) {
   return `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&src=trip&coordinate=wgs84&callnative=1`;
