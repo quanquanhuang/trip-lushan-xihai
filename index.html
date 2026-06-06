@@ -111,6 +111,7 @@ a:hover { text-decoration: underline; }
 .card:active { box-shadow: var(--shadow-md); }
 .card .time { font-size: 12px; font-weight: 600; color: var(--text-tertiary); letter-spacing: .01em; }
 .card .name { font-size: 17px; font-weight: 600; margin: 2px 0 4px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 6px; }
+.card .dest { font-size: 13px; color: #0071e3; margin-bottom: 4px; }
 .card .desc { font-size: 14px; color: var(--text-secondary); line-height: 1.45; }
 .badge { display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 4px; }
 .badge.food   { background: rgba(255,59,48,.1);  color: var(--tint-red); }
@@ -408,8 +409,8 @@ function showDay(idx) {
   day.locations.forEach(l => {
     if(!l.lat) return;
     const m = L.marker([l.lat,l.lng], { icon: icon(day.color, emojis[l.type]||'📌') }).addTo(map);
-    const gmapQ = l.gmap||encodeURIComponent(l.name);
-    m.bindPopup(`<b>${l.name}</b>${l.time!=='—'?'<br><span style="color:#86868b">'+l.time+'</span>':''}<br>${l.desc}${l.budget?'<br><span style="color:#ff9500">'+l.budget+'</span>':''}<br><a href="#" onclick="event.preventDefault();openAS('${l.name.replace(/'/g,"\\'")}',${l.lat},${l.lng},'${gmapQ}')">📍 导航</a>${l.xhs?' · <a href="'+l.xhs+'" target="_blank">📕 小红书</a>':''}`);
+    const navDest = l.destination||l.name; const gmapQ = l.gmap||encodeURIComponent(navDest);
+    m.bindPopup(`<b>${l.name}</b>${l.destination?'<br><span style="color:#0071e3;font-size:12px">📍 '+l.destination+'</span>':''}${l.time!=='—'?'<br><span style="color:#86868b">'+l.time+'</span>':''}<br>${l.desc}${l.budget?'<br><span style="color:#ff9500">'+l.budget+'</span>':''}<br><a href="#" onclick="event.preventDefault();openAS('${(l.destination||l.name).replace(/'/g,"\\'")}',${l.lat},${l.lng},'${gmapQ}')">📍 导航</a>${l.xhs?' · <a href="'+l.xhs+'" target="_blank">📕 小红书</a>':''}`);
     markers.push(m);
     if(l.time!=='—') coords.push([l.lat,l.lng]);
   });
@@ -456,13 +457,13 @@ function locCard(loc, dayIdx) {
   const bdg = loc.type==='food'?'<span class="badge food">餐</span>':loc.type==='spot'?'<span class="badge spot">景</span>':loc.type==='drink'?'<span class="badge drink">饮</span>':'';
   const uid = `d${dayIdx}-${loc.name.replace(/\W/g,'')}`;
   const locKey = `${dayIdx}::${loc.name}`;
-  const gmapQ = loc.gmap||encodeURIComponent(loc.name);
-  let lnk = `<button class="btn nav" onclick="openAS('${loc.name.replace(/'/g,"\\'")}',${loc.lat},${loc.lng},'${gmapQ}')">📍 导航</button>`;
+  const navDest = loc.destination||loc.name; const gmapQ = loc.gmap||encodeURIComponent(navDest);
+  let lnk = `<button class="btn nav" onclick="openAS('${(loc.destination||loc.name).replace(/'/g,"\\'")}',${loc.lat},${loc.lng},'${gmapQ}')">📍 导航</button>`;
   if(loc.xhs||loc.xhsKeyword) {
     const xhsPageUrl = 'xhs.html?keyword=' + encodeURIComponent(xhsKeyword(loc));
     lnk += `<a href="${xhsPageUrl}" class="btn xhs" target="_blank">📕 小红书</a>`;
   }
-  return `<div class="tl-item"><div class="tl-dot ${dot}"></div><div class="card" onclick="if(!event.target.closest('.btn,.links'))toggle('${uid}')"><div class="time">${loc.time!=='—'?loc.time:'备选'}</div><div class="name">${bdg} ${loc.name}</div><div class="desc">${loc.desc}</div>${loc.budget?'<div class="budget">'+loc.budget+'</div>':''}${payChips(loc.pay)}<div class="links">${lnk}</div>${loc.detail?'<div class="details" id="'+uid+'">'+loc.detail.replace(/\n/g,'<br>')+'</div>':''}</div></div>`;
+  return `<div class="tl-item"><div class="tl-dot ${dot}"></div><div class="card" onclick="if(!event.target.closest('.btn,.links'))toggle('${uid}')"><div class="time">${loc.time!=='—'?loc.time:'备选'}</div><div class="name">${bdg} ${loc.name}</div>${loc.destination?`<div class="dest">📍 ${loc.destination}</div>`:''}<div class="desc">${loc.desc}</div>${loc.budget?'<div class="budget">'+loc.budget+'</div>':''}${payChips(loc.pay)}<div class="links">${lnk}</div>${loc.detail?'<div class="details" id="'+uid+'">'+loc.detail.replace(/\n/g,'<br>')+'</div>':''}</div></div>`;
 }
 
 function renderDay(idx) {
