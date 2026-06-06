@@ -448,7 +448,22 @@ function openExt(key, kind) {
   if (IN_APP_WEBVIEW) {
     window.location.href = xhsWebUrl(loc);
   } else {
-    window.location.href = xhsAppUrl(loc);
+    // Try app deep link, fall back to web URL if app not installed
+    const appUrl = xhsAppUrl(loc);
+    const webUrl = xhsWebUrl(loc);
+    const start = Date.now();
+    // Use hidden iframe to probe deep link without navigating away
+    const iframe = document.createElement('iframe');
+    iframe.style.cssText = 'display:none;width:0;height:0;';
+    iframe.src = appUrl;
+    document.body.appendChild(iframe);
+    setTimeout(function() {
+      document.body.removeChild(iframe);
+      // If page is still visible after 1.5s, app didn't open → use web URL
+      if (Date.now() - start < 3000) {
+        window.location.href = webUrl;
+      }
+    }, 1500);
   }
   return false;
 }
