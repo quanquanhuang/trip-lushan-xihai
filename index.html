@@ -193,71 +193,63 @@ a:hover { text-decoration: underline; }
 <div class="content" id="content"></div>
 
 <script>
-const HOTEL = { name: '庐山西海温泉假日酒店', lat: 29.198, lng: 115.385 };
+const HOTEL = { name: '咏归川·西海', lat: 29.316, lng: 115.378, price: '约1000-1500元/间/晚', rating: 4.6, reviewCount: 200, tips: '夯土野宿风格，露天泳池，亲子乐园，0差评' };
 
 const DAYS = [
   {
     id: 0, label: '总览', color: '#0071e3', locations: []
   },
   {
-    id: 1, label: 'D1', date: '第一天 · 轻松到达 + 温泉躺平', title: '温泉养生日', color: '#ff9500',
+      {
+    id: 1, label: 'D1', date: '第一天 · 轻松到达 + 度假放松', title: '度假入住日', color: '#ff9500',
     locations: [
       {
-        name: '武汉出发', destination: '武汉市', lat: 30.593, lng: 114.305,
+        name: '武汉出发', destination: '咏归川·西海', lat: 30.593, lng: 114.305,
         type: 'transport', time: '08:30',
         desc: '自驾走沪渝高速/福银高速，约3-3.5小时到达',
         budget: '高速费约150元',
         detail: '全程约280公里\n建议走G50沪渝高速→G70福银高速\n永修/庐山西海出口下\n路况良好，适合孕妇休息乘车',
-        gmap: '武汉+to+庐山西海温泉度假村'
+        gmap: '武汉+to+咏归川武宁西海度假酒店'
       },
       {
-        name: '庐山西海温泉假日酒店', lat: 29.198, lng: 115.385,
+        name: '咏归川·西海', destination: '咏归川·西海', lat: 29.316, lng: 115.378,
         type: 'hotel', time: '12:00',
-        desc: '办理入住，湖景房推窗见水，度假感拉满',
-        budget: '约800-1000元/间/晚',
-        detail: '4A级风景区内，紧邻柘林湖\n占地400余亩，有温泉开采权\n酒店二层可直达温泉区\n建议选湖景房，视野开阔',
-        xhsKeyword: '庐山西海温泉假日酒店',
-        gmap: '庐山西海温泉假日酒店'
+        desc: '办理入住，夯土野宿风格，湖景推窗见水',
+        budget: '约1000-1500元/间/晚',
+        detail: '武宁县官莲乡东山村，距西海服务区5分钟\n夯土白墙与自然融为一体\n配套：露天泳池、亲子乐园、餐厅\n4.6分/5分，"0差评"口碑',
+        gmap: '咏归川武宁西海度假酒店'
       },
       {
-        name: '酒店午餐', destination: '庐山西海温泉假日酒店', lat: 29.198, lng: 115.385,
+        name: '酒店午餐', destination: '咏归川·西海餐厅', lat: 29.316, lng: 115.378,
         type: 'food', time: '12:30',
-        desc: '酒店餐厅或附近农家菜，品尝庐山西海特色鱼鲜',
-        budget: '约200-300元/4人',
-        detail: '推荐菜品：\n🐟 棍子鱼（西海特色，肉质鲜嫩）\n🥚 西海银鱼蒸蛋\n🥬 山野时蔬\n适合孕妇清淡饮食',
-        xhsKeyword: '庐山西海美食推荐',
-        gmap: '庐山西海温泉假日酒店餐厅'
+        desc: '酒店餐厅享用午餐，当地特色食材',
+        budget: '约300-400元/4人',
+        detail: '酒店自有餐厅\n推荐：当地河鲜、时令蔬菜\n适合孕妇清淡饮食'
       },
       {
-        name: '西海温泉泡汤', destination: '西海温泉', lat: 29.198, lng: 115.385,
+        name: '泳池·亲子时光', destination: '咏归川·西海', lat: 29.316, lng: 115.378,
         type: 'spot', time: '14:30',
-        desc: '49个温泉池，含药汤、鱼疗、花泉等，孕妇泡低温池（<38℃）',
-        budget: '住店免费/约168元/人',
-        detail: '华东地区最大的园林动感温泉\n推荐：\n🌿 花泉池（舒缓放松）\n🐟 鱼疗池（去角质）\n⚠️ 孕妇注意：\n- 水温不超过38℃\n- 每次泡10-15分钟\n- 避免药汤（不确定成分）\n- 多喝水，有人陪同',
-        xhsKeyword: '庐山西海温泉',
-        gmap: '庐山西海温泉度假村温泉区'
+        desc: '露天泳池放松，亲子乐园玩耍',
+        detail: '酒店露天泳池\n亲子乐园设施齐全\n孕妇可在池边休息、晒太阳'
       },
       {
-        name: '湖边散步/下午茶', destination: '柘林湖畔', lat: 29.195, lng: 115.388,
+        name: '湖边散步·下午茶', destination: '柘林湖畔', lat: 29.310, lng: 115.375,
         type: 'spot', time: '17:00',
-        desc: '柘林湖畔漫步，看夕阳洒在湖面上，超级治愈',
-        detail: '湖边有步道，平坦好走\n傍晚光线最美\n适合拍照打卡\n孕妇慢慢走，不赶时间',
-        gmap: '柘林湖'
+        desc: '柘林湖畔漫步，千岛湖风光，傍晚光线最美',
+        detail: '酒店紧邻柘林水库\n湖边有步道，平坦好走\n适合拍照打卡\n孕妇慢慢走，不赶时间'
       },
       {
-        name: '晚餐·农家乐', destination: '西海鱼庄', lat: 29.200, lng: 115.382,
+        name: '酒店晚餐', destination: '咏归川·西海餐厅', lat: 29.316, lng: 115.378,
         type: 'food', time: '18:30',
-        desc: '附近农家乐吃地道西海鱼鲜，新鲜打捞',
-        budget: '约200-300元/4人',
-        detail: '推荐：\n🐟 红烧棍子鱼\n🦐 西海河虾\n🍲 土鸡汤（孕妇补身体）\n🥬 时令蔬菜',
-        xhsKeyword: '庐山西海农家乐',
-        gmap: '庐山西海农家乐'
+        desc: '酒店餐厅享用晚餐，湖景用餐',
+        budget: '约300-400元/4人',
+        detail: '酒店餐厅\n推荐：当地河鲜、土鸡汤\n孕妇补身体'
       },
       {
-        name: '酒店休息/夜景', destination: '庐山西海温泉假日酒店', lat: 29.198, lng: 115.385,
+        name: '湖边夜景·休息', destination: '咏归川·西海', lat: 29.316, lng: 115.378,
         type: 'hotel', time: '20:00',
-        desc: '回酒店休息，湖边夜景很美，早点休息养精蓄锐',
-        gmap: '庐山西海温泉假日酒店'
+        desc: '回房间休息，湖边夜景很美',
+        detail: '早点休息养精蓄锐\n第二天游船观岛'
       }
     ]
   },
@@ -265,7 +257,7 @@ const DAYS = [
     id: 2, label: 'D2', date: '第二天 · 游船观岛 + 悠闲返程', title: '湖光山色日', color: '#34c759',
     locations: [
       {
-        name: '睡到自然醒·早餐', destination: '庐山西海温泉假日酒店', lat: 29.198, lng: 115.385,
+        name: '睡到自然醒·早餐', destination: '咏归川·西海', lat: 29.316, lng: 115.378,
         type: 'food', time: '08:30',
         desc: '不设闹钟，自然醒后慢慢吃早餐',
         detail: '度假嘛，不赶时间\n孕妇需要充足睡眠\n酒店自助早餐或附近早点',
